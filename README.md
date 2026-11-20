@@ -1,7 +1,7 @@
 # Zapis GBFS – Metrorower (Share4Equity)
 
 Skrypty zapisują co kilka minut stan stacji systemu rowerów publicznych z publicznego GBFS
-i liczą, jak często stacje są puste albo pełne. Domyślnie: Metrorower w GZM
+i liczą, jak często stacje są puste, prawie puste albo przepełnione. Domyślnie: Metrorower w GZM
 (`https://gbfs.nextbike.net/maps/gbfs/v2/nextbike_zz/gbfs.json`). Inny system z katalogu
 MobilityData (np. Veturilo: `nextbike_vw`, MEVO: `https://gbfs.urbansharing.com/rowermevo.pl/gbfs.json`)
 podaje się opcją `--feed`.
@@ -49,8 +49,9 @@ Po kilku tygodniach:
 
     python3 gbfs_analyze.py --data dane --out wynik
 
-- `wynik/stacje_puste_pelne.csv` – dla każdej stacji: nazwa, współrzędne, pojemność i odsetek zrzutów,
-  w których była pusta (0 rowerów) lub pełna (0 wolnych stojaków): ogółem, w dni robocze, w weekendy,
+- `wynik/stacje_dostepnosc.csv` – dla każdej stacji: numer, współrzędne, pojemność, obszar i odsetek zrzutów,
+  w których była pusta (0 rowerów), miała najwyżej 1 rower albo była przepełniona (więcej rowerów niż
+  stojaków – w Metrorowerze rower można zostawić obok stojaka): ogółem, w dni robocze, w weekendy,
   w szczycie (domyślnie 7–9 i 15–18, zmiana: `--peak 6-9,14-18`) i w nocy (23–5).
   W QGIS: Warstwa → Dodaj warstwę → Tekst rozdzielany (CSV), X = lon, Y = lat, EPSG:4326.
 - `wynik/godziny.csv` – odsetek pustych stacji w całym systemie dla każdej godziny.
